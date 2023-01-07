@@ -1,4 +1,4 @@
-# personal-portfolio-vue3
+# personal-portfolio
 
 This is my personal portfolio website built with Vue3/Vite and Tailwind CSS.
 

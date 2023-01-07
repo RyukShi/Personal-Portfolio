@@ -13,6 +13,10 @@
     html {
         font-family: 'JetBrains Mono', monospace;
     }
+
+    select {
+        @apply bg-slate-900 border border-slate-50 px-4 py-2 rounded-lg;
+    }
 }
 
 @layer components {
