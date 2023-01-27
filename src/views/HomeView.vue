@@ -93,7 +93,7 @@ const mainStore = useMainStore()
           <p class="font-bold text-2xl">CV Junior Web Developer</p>
           <p class="mt-2">Need to know more about my background, download my CV.</p>
         </div>
-        <a href="src/assets/cv.pdf" class="btn-lg btn-amber hover:-translate-y-1"
+        <a href="./cv.pdf" class="btn-lg btn-amber hover:-translate-y-1"
         target="_blank" rel="noopener noreferrer">Download it!</a>
       </div>
     </div>
