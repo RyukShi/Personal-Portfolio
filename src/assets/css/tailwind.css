@@ -77,7 +77,7 @@
     /* terminal */
 
     .terminal {
-        @apply bg-slate-900 rounded-lg mt-4 relative text-sm;
+        @apply bg-slate-900 rounded-lg mt-4 relative text-sm overflow-y-scroll;
     }
 
     .terminal-header {
@@ -93,7 +93,12 @@
     }
 
     .terminal-input {
-        @apply bg-transparent outline-0 w-full;
+        @apply bg-transparent outline-0 w-full cursor-default;
+    }
+
+    #ascii-art {
+        @apply text-xs;
+        font-family: 'Courier New', Courier, monospace;
     }
 
     /* footer */

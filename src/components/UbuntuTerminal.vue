@@ -1,5 +1,15 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+
+onMounted(() => {
+  let colors = ['text-red-500', 'text-amber-500', 'text-green-500']
+  let index = 0
+  setInterval(() => {
+    document.getElementById('ascii-art')?.classList.remove(colors[index])
+    index = (index + 1) % colors.length
+    document.getElementById('ascii-art')?.classList.add(colors[index])
+  }, 500)
+})
 
 const command = ref("")
 const lines = ref([])
@@ -50,7 +60,7 @@ const runCommand = () => {
       <div style="line-height: 1em;">ryukshi@ubuntu: ~</div>
     </div>
     <div class="terminal-body" style="width: 80%;">
-      <pre id="ascii-art" style="font-family: 'Courier New', Courier, monospace; font-size: large;">
+      <pre id="ascii-art">
    ____                     __                   __
   / __ \_   _____  _____   / /_  ___  ________  / /
  / / / / | / / _ \/ ___/  / __ \/ _ \/ ___/ _ \/ / 
@@ -63,7 +73,7 @@ const runCommand = () => {
         <img v-if="l?.srcImg" :src="l.srcImg" style="height: 130px; width: 180px;" alt="Cat meme" />
       </div>
       <div class="flex flex-row gap-x-2">
-        <p>ryukshi@ubuntu:~$</p>
+        <p class="text-indigo-500">ryukshi@ubuntu:~$</p>
         <input class="terminal-input" type="text" v-model="command" @keyup.enter="runCommand" />
       </div>
     </div>
