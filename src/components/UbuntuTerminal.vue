@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import GameSnake from './GameSnake.vue'
 
 onMounted(() => {
   let colors = ['text-red-500', 'text-amber-500', 'text-green-500']
@@ -13,13 +14,27 @@ onMounted(() => {
 
 const command = ref("")
 const lines = ref([])
+const gameMode = ref(false)
+const selectedGame = ref(null)
 
 const helpDescription = `Here is a list of the commands currently available:
 - **whois ryukshi**: displays information about me.
-- **clear**: clears the terminal screen.`
+- **skills**: displays all my skills.
+- **clear**: clears the terminal screen.
+- **games**: displays all available games.`
 
-const aboutMeDescription = `Fell free to contact me ! 
-My E-mail 📫 : aurelien.rb@outlook.fr`
+const skillsDescription = `My programming skills:
+- Web Frameworks: React, Vue.js, Symfony.
+- Basic web development: HTML, CSS, and JavaScript.
+- Knowledge of relational databases (MySQL, PostgreSQL, MariaDB) and NoSQL (MongoDB).
+- Understanding of Agile development principles and project management (Jira & SCRUM).`
+
+const aboutMeDescription = `Fell free to contact me ! My E-mail 📫 : aurelien.rb@outlook.fr`
+
+const allGames = `Here are the different games I have developed:
+- **snake**
+- **tetris** (Coming soon)
+- **pac-man** (Coming soon)`
 
 const memes = ['./images/meme-cat-1.gif', './images/meme-cat-2.gif']
 
@@ -40,6 +55,20 @@ const runCommand = () => {
     } else if (c === 'cat') {
       let src = memes[Math.floor(Math.random() * memes.length)]
       lines.value.push({ id: lines.value.length, c: c, srcImg: src })
+    } else if (c === 'skills') {
+      lines.value.push({ id: lines.value.length, c: c, text: skillsDescription })
+    } else if (c === 'snake') {
+      lines.value.push({ id: lines.value.length, c: c })
+      gameMode.value = true
+      selectedGame.value = c
+    } else if (c === 'tetris') {
+      lines.value.push({ id: lines.value.length, c: c, text: 'Coming soon!' })
+      selectedGame.value = c
+    } else if (c === 'pac-man') {
+      lines.value.push({ id: lines.value.length, c: c, text: 'Coming soon!' })
+      selectedGame.value = c
+    } else if (c === 'games') {
+      lines.value.push({ id: lines.value.length, c: c, text: allGames })
     } else {
       let errorMessage = `${c}: command not found, type 'help' to see available commands`
       lines.value.push({ id: lines.value.length, c: c, text: errorMessage })
@@ -52,14 +81,14 @@ const runCommand = () => {
 </script>
 
 <template>
-  <div class="terminal" style="width: 800px; height: 400px;" @click="autofocus">
+  <div class="terminal" @click="autofocus">
     <div class="terminal-header">
       <span class="terminal-header-button bg-red-500"></span>
       <span class="terminal-header-button bg-yellow-500"></span>
       <span class="terminal-header-button bg-green-500"></span>
       <div style="line-height: 1em;">ryukshi@ubuntu: ~</div>
     </div>
-    <div class="terminal-body" style="width: 80%;">
+    <div v-if="!gameMode" class="terminal-body">
       <pre id="ascii-art">
    ____                     __                   __
   / __ \_   _____  _____   / /_  ___  ________  / /
@@ -69,13 +98,18 @@ const runCommand = () => {
       </pre>
       <div v-for="l in lines" :key="l.id">
         <p>ryukshi@ubuntu:~$ {{ l.c }}</p>
-        <p v-if="l?.text">{{ l.text }}</p>
+        <div v-if="l?.text">
+          <p v-for="(s, i) in l.text.split('\n')" :key="i">{{ s }}</p>
+        </div>
         <img v-if="l?.srcImg" :src="l.srcImg" style="height: 130px; width: 180px;" alt="Cat meme" />
       </div>
       <div class="flex flex-row gap-x-2">
         <p class="text-indigo-500">ryukshi@ubuntu:~$</p>
-        <input class="terminal-input" type="text" v-model="command" @keyup.enter="runCommand" />
+        <input class="terminal-input" type="text" v-model="command" @keydown.enter="runCommand" />
       </div>
+    </div>
+    <div v-else class="terminal-body">
+      <GameSnake v-if="selectedGame === 'snake'"/>
     </div>
   </div>
 </template>

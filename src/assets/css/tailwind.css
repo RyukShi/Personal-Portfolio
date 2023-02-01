@@ -22,7 +22,7 @@
 @layer components {
 
     .centered {
-        @apply flex justify-center;
+        @apply flex justify-center items-center;
     }
 
     /* card */
@@ -77,7 +77,7 @@
     /* terminal */
 
     .terminal {
-        @apply bg-slate-900 rounded-lg mt-4 relative text-sm overflow-y-scroll;
+        @apply bg-slate-900 rounded-lg mt-4 relative text-sm overflow-y-scroll container h-screen;
     }
 
     .terminal-header {
@@ -89,7 +89,7 @@
     }
 
     .terminal-body {
-        @apply absolute top-12 left-4;
+        @apply mt-12 ml-4 mr-4 mb-4;
     }
 
     .terminal-input {
@@ -97,7 +97,7 @@
     }
 
     #ascii-art {
-        @apply text-xs;
+        @apply text-base;
         font-family: 'Courier New', Courier, monospace;
     }
 
