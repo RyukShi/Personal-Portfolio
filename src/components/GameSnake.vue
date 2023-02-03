@@ -51,13 +51,26 @@ const commandsKey = (event) => {
   else if (k === 'p' && !tutorialMode.value) pause.value = !pause.value
 }
 
+const play = () => {
+  ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
+  drawSnake()
+  drawFood()
+}
+
+const restart = () => {
+  gameOver.value = false
+  score.value = 0
+  snake.value = { x: 50, y: 50, length: 1, body: [] }
+  direction.value = 'right'
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+  play()
+}
+
 onMounted(() => {
   document.addEventListener('keydown', commandsKey)
   canvas = document.getElementById('canvas')
   ctx = canvas.getContext('2d')
-  ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
-  drawSnake()
-  drawFood()
+  play()
 })
 
 var moveIntervalId = null
@@ -76,28 +89,28 @@ onBeforeUnmount(() => {
 })
 
 const moveSnake = () => {
+  if (checkFood.value) {
+    score.value += 20
+    snake.value.length += 1
+    drawFood()
+  }
   if (direction.value === 'right') snake.value.x += cellSize
   else if (direction.value === 'left') snake.value.x -= cellSize
   else if (direction.value === 'up') snake.value.y -= cellSize
   else if (direction.value === 'down') snake.value.y += cellSize
-  drawSnake()
-}
-
-const drawSnake = () => {
   if (checkBodyCollisions.value || checkWallCollisions.value) {
     pause.value = true
     gameOver.value = true
   }
+  drawSnake()
+}
+
+const drawSnake = () => {
   snake.value.body.push([snake.value.x, snake.value.y])
   ctx.fillRect(snake.value.x, snake.value.y, cellSize, cellSize)
   if (snake.value.body.length > snake.value.length) {
     let first = snake.value.body.shift()
     ctx.clearRect(first[0], first[1], cellSize, cellSize)
-  }
-  if (checkFood.value) {
-    score.value += 20
-    snake.value.length += 1
-    drawFood()
   }
 }
 
@@ -106,23 +119,24 @@ const drawFood = () => {
     Math.floor(Math.random() * (canvas.width / cellSize)) * cellSize,
     Math.floor(Math.random() * (canvas.height / cellSize)) * cellSize
   ]
-  let inSnakeBody = snake.value.body.some(segment => {
+  while (snake.value.body.some(segment => {
     return segment[0] === randPoint[0] && segment[1] === randPoint[1]
-  })
-  if (inSnakeBody) {
-    drawFood()
-  } else {
-    food.value = { x: randPoint[0], y: randPoint[1] }
-    ctx.fillRect(food.value.x, food.value.y, cellSize, cellSize)
+  })) {
+    randPoint = [
+      Math.floor(Math.random() * (canvas.width / cellSize)) * cellSize,
+      Math.floor(Math.random() * (canvas.height / cellSize)) * cellSize
+    ]
   }
+  food.value = { x: randPoint[0], y: randPoint[1] }
+  ctx.fillRect(food.value.x, food.value.y, cellSize, cellSize)
 }
 </script>
 
 <template>
-  <div v-if="!gameOver">
+  <div v-show="!gameOver">
     <div class="text-center" v-if="!tutorialMode">
       <p class="text-2xl">Score : {{ score }}</p>
-      <p class="text-amber-500" v-if="pause">PAUSE, press "P" to start!</p>
+      <p class="text-amber-500" v-show="pause">PAUSE, press "P" to start!</p>
     </div>
     <div class="m-2" v-else>
       <p>To go Up press "Arrow Up" or "Z".</p>
@@ -136,17 +150,23 @@ const drawFood = () => {
         What a shame! You can't play Snake because your browser doesn't support canvas.
       </canvas>
     </div>
-    <button v-if="pause" class="btn btn-amber m-2" @click="tutorialMode = !tutorialMode">
-      {{ (tutorialMode) ? 'Exit Tutorial' : 'Show Tutorial' }}
-    </button>
-    <select v-if="pause && !tutorialMode" v-model="speed">
-      <option v-for="d in difficulties" :key="d.label" :value="d.value">
-        {{ d.label }}
-      </option>
-    </select>
+    <div class="centered gap-x-4">
+      <button v-if="!tutorialMode" class="btn btn-amber" @click="pause = !pause">
+        PAUSE
+      </button>
+      <button v-if="pause" class="btn btn-amber" @click="tutorialMode = !tutorialMode">
+        {{ (tutorialMode) ? 'Exit Tutorial' : 'Show Tutorial' }}
+      </button>
+      <select v-if="pause && !tutorialMode" v-model="speed">
+        <option v-for="d in difficulties" :key="d.label" :value="d.value">
+          {{ d.label }}
+        </option>
+      </select>
+    </div>
   </div>
-  <div v-else>
+  <div v-show="gameOver">
     <p class="text-2xl text-center">Game Over! Your score : {{ score }} point(s)</p>
+    <button class="btn btn-amber" @click="restart">Play again!</button>
   </div>
 </template>
 

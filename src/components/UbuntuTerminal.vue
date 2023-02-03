@@ -39,7 +39,7 @@ const allGames = `Here are the different games I have developed:
 const memes = ['./images/meme-cat-1.gif', './images/meme-cat-2.gif']
 
 const autofocus = () => {
-  document.querySelector('.terminal-input').focus()
+  document.querySelector('.terminal-input')?.focus()
 }
 
 const runCommand = () => {
