@@ -109,7 +109,7 @@ const runCommand = () => {
       </div>
     </div>
     <div v-else class="terminal-body">
-      <GameSnake v-if="selectedGame === 'snake'"/>
+      <GameSnake @change-mode="(mode) => gameMode = mode" v-if="selectedGame === 'snake'"/>
     </div>
   </div>
 </template>

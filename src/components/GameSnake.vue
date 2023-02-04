@@ -152,7 +152,7 @@ const drawFood = () => {
     </div>
     <div class="centered gap-x-4">
       <button v-if="!tutorialMode" class="btn btn-amber" @click="pause = !pause">
-        PAUSE
+        {{ (pause) ? 'START' : 'PAUSE' }}
       </button>
       <button v-if="pause" class="btn btn-amber" @click="tutorialMode = !tutorialMode">
         {{ (tutorialMode) ? 'Exit Tutorial' : 'Show Tutorial' }}
@@ -162,11 +162,16 @@ const drawFood = () => {
           {{ d.label }}
         </option>
       </select>
+      <button v-if="pause" class="btn btn-red" @click="$emit('changeMode', false)">
+        Exit game
+      </button>
     </div>
   </div>
   <div v-show="gameOver">
     <p class="text-2xl text-center">Game Over! Your score : {{ score }} point(s)</p>
-    <button class="btn btn-amber" @click="restart">Play again!</button>
+    <div class="centered mt-4">
+      <button class="btn btn-amber" @click="restart">Play again!</button>
+    </div>
   </div>
 </template>
 
