@@ -7,10 +7,13 @@ const snake = ref({ x: 50, y: 50, length: 1, body: [] })
 const food = ref({ x: 0, y: 0 })
 /* String refs */
 const direction = ref('right')
+const nickname = ref(null)
 /* Boolean refs */
 const tutorialMode = ref(false)
 const pause = ref(true)
 const gameOver = ref(false)
+const started = ref(false)
+const rainbowMode = ref(false)
 /* Number refs */
 const score = ref(0)
 const speed = ref(200)
@@ -40,19 +43,27 @@ const cellSize = 5
 const colors = hexaColors
 var canvas = null
 var ctx = null
+var moveIntervalId = null
 
 /* All function, life cycle hooks and watch ref  */
 const commandsKey = (event) => {
-  let k = event.key
-  if (k === 'q' || k === 'ArrowLeft') direction.value = 'left'
-  else if (k === 'z' || k === 'ArrowUp') direction.value = 'up'
-  else if (k === 'd' || k === 'ArrowRight') direction.value = 'right'
-  else if (k === 's' || k === 'ArrowDown') direction.value = 'down'
-  else if (k === 'p' && !tutorialMode.value) pause.value = !pause.value
+  if (started.value) {
+    let k = event.key
+    /* You can only change direction when the game is started and not paused */
+    if (!pause.value) {
+      if (k === 'q' || k === 'ArrowLeft') direction.value = 'left'
+      else if (k === 'z' || k === 'ArrowUp') direction.value = 'up'
+      else if (k === 'd' || k === 'ArrowRight') direction.value = 'right'
+      else if (k === 's' || k === 'ArrowDown') direction.value = 'down'
+    }
+    if (k === 'p' && !tutorialMode.value) pause.value = !pause.value
+  }
 }
 
 const play = () => {
-  ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
+  started.value = true
+  if (!rainbowMode.value)
+    ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
   drawSnake()
   drawFood()
 }
@@ -70,16 +81,18 @@ onMounted(() => {
   document.addEventListener('keydown', commandsKey)
   canvas = document.getElementById('canvas')
   ctx = canvas.getContext('2d')
-  play()
 })
 
-var moveIntervalId = null
-
 watch(pause, (isPaused) => {
-  if (isPaused) {
-    clearInterval(moveIntervalId)
-  } else {
-    moveIntervalId = setInterval(moveSnake, speed.value)
+  /* if the game is started */
+  if (started.value) {
+    /*
+     If the game is paused, the method clearInterval is called 
+     with the identifier (moveIntervalId). Otherwise a new value 
+     is assigned to this indicator and restarts the game.
+    */
+    isPaused ? clearInterval(moveIntervalId) :
+      moveIntervalId = setInterval(moveSnake, speed.value);
   }
 })
 
@@ -107,6 +120,8 @@ const moveSnake = () => {
 
 const drawSnake = () => {
   snake.value.body.push([snake.value.x, snake.value.y])
+  if (rainbowMode.value)
+    ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
   ctx.fillRect(snake.value.x, snake.value.y, cellSize, cellSize)
   if (snake.value.body.length > snake.value.length) {
     let first = snake.value.body.shift()
@@ -133,7 +148,23 @@ const drawFood = () => {
 </script>
 
 <template>
-  <div v-show="!gameOver">
+  <div class="centered flex-col gap-y-4" v-if="!started">
+    <input class="bg-transparent text-xl text-amber-500 py-4 px-8 outline-0 border border-amber-500 rounded-lg"
+      type="text"
+      v-model="nickname"
+      placeholder="Enter your Nickname!" />
+    <p class="text-lg">I advise you to play in hard mode, it's more fun! ;)</p>
+    <select class="text-xl" v-model="speed">
+      <option v-for="d in difficulties" :key="d.label" :value="d.value">
+        {{ d.label }}
+      </option>
+    </select>
+    <label> Rainbow Mode : {{ rainbowMode }}
+      <input type="checkbox" v-model="rainbowMode" />
+    </label>
+    <button v-show="nickname" class="btn-lg btn-amber" @click="play">Play Now!</button>
+  </div>
+  <div v-show="!gameOver && started">
     <div class="text-center" v-if="!tutorialMode">
       <p class="text-2xl">Score : {{ score }}</p>
       <p class="text-amber-500" v-show="pause">PAUSE, press "P" to start!</p>
@@ -157,11 +188,6 @@ const drawFood = () => {
       <button v-if="pause" class="btn btn-amber" @click="tutorialMode = !tutorialMode">
         {{ (tutorialMode) ? 'Exit Tutorial' : 'Show Tutorial' }}
       </button>
-      <select v-if="pause && !tutorialMode" v-model="speed">
-        <option v-for="d in difficulties" :key="d.label" :value="d.value">
-          {{ d.label }}
-        </option>
-      </select>
       <button v-if="pause" class="btn btn-red" @click="$emit('changeMode', false)">
         Exit game
       </button>
@@ -170,7 +196,7 @@ const drawFood = () => {
   <div v-show="gameOver">
     <p class="text-2xl text-center">Game Over! Your score : {{ score }} point(s)</p>
     <div class="centered mt-4">
-      <button class="btn btn-amber" @click="restart">Play again!</button>
+      <button class="btn-lg btn-amber" @click="restart">Play again!</button>
     </div>
   </div>
 </template>
