@@ -2,6 +2,8 @@
 import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue'
 import { hexaColors } from '../constant'
 
+const emit = defineEmits(['changeMode'])
+
 /* Object refs */
 const snake = ref({ x: 50, y: 50, length: 1, body: [] })
 const food = ref({ x: 0, y: 0 })
@@ -188,7 +190,7 @@ const drawFood = () => {
       <button v-if="pause" class="btn btn-amber" @click="tutorialMode = !tutorialMode">
         {{ (tutorialMode) ? 'Exit Tutorial' : 'Show Tutorial' }}
       </button>
-      <button v-if="pause" class="btn btn-red" @click="$emit('changeMode', false)">
+      <button v-if="pause" class="btn btn-red" @click="emit('changeMode', false)">
         Exit game
       </button>
     </div>
