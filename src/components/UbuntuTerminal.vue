@@ -1,15 +1,24 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import GameSnake from './GameSnake.vue'
+
+let blinkIntervalId = null
 
 onMounted(() => {
   let colors = ['text-red-500', 'text-amber-500', 'text-green-500']
   let index = 0
-  setInterval(() => {
-    document.getElementById('ascii-art')?.classList.remove(colors[index])
-    index = (index + 1) % colors.length
-    document.getElementById('ascii-art')?.classList.add(colors[index])
+  blinkIntervalId = setInterval(() => {
+    let asciiArt = document.getElementById('ascii-art')
+    if (asciiArt) {
+      asciiArt.classList.remove(colors[index])
+      index = (index + 1) % colors.length
+      asciiArt.classList.add(colors[index])
+    }
   }, 500)
+})
+
+onBeforeUnmount(() => {
+  clearInterval(blinkIntervalId)
 })
 
 const command = ref("")
@@ -39,7 +48,8 @@ const allGames = `Here are the different games I have developed:
 const memes = ['./images/meme-cat-1.gif', './images/meme-cat-2.gif']
 
 const autofocus = () => {
-  document.querySelector('.terminal-input')?.focus()
+  if (!gameMode.value)
+    document.querySelector('.terminal-input').focus()
 }
 
 const runCommand = () => {
@@ -88,7 +98,7 @@ const runCommand = () => {
       <span class="terminal-header-button bg-green-500"></span>
       <div style="line-height: 1em;">ryukshi@ubuntu: ~</div>
     </div>
-    <div v-if="!gameMode" class="terminal-body">
+    <div v-show="!gameMode" class="terminal-body">
       <pre id="ascii-art">
    ____                     __                   __
   / __ \_   _____  _____   / /_  ___  ________  / /
@@ -108,8 +118,8 @@ const runCommand = () => {
         <input class="terminal-input" type="text" v-model="command" @keydown.enter="runCommand" />
       </div>
     </div>
-    <div v-else class="terminal-body">
-      <GameSnake @change-mode="(mode) => gameMode = mode" v-if="selectedGame === 'snake'"/>
+    <div v-if="gameMode" class="terminal-body">
+      <GameSnake @change-mode="(mode) => gameMode = mode" v-if="selectedGame === 'snake'" />
     </div>
   </div>
 </template>
