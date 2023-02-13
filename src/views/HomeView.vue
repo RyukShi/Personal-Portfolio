@@ -1,6 +1,7 @@
 <script setup>
 import UbuntuTerminal from '../components/UbuntuTerminal.vue'
 import ChooseLanguage from '../components/ChooseLanguage.vue'
+import SkillsAndAbilities from '../components/SkillsAndAbilities.vue'
 import { useMainStore } from '../stores/mainStore'
 
 const mainStore = useMainStore()
@@ -72,7 +73,18 @@ const mainStore = useMainStore()
       Merci de prendre le temps de visiter mon portfolio. Bonne visite!
     </p>
 
-    <div class="mt-10 mb-10">
+    <div class="centered mt-10">
+      <div class="border-2 border-slate-50 hover:border-amber-500 rounded-lg py-8 px-16 centered gap-x-28 duration-200">
+        <div>
+          <p class="font-bold text-2xl">CV Junior Web Developer</p>
+          <p class="mt-2">Need to know more about my background, download my CV.</p>
+        </div>
+        <a href="./cv.pdf" class="btn-lg btn-amber hover:-translate-y-1"
+        target="_blank" rel="noopener noreferrer">Download it!</a>
+      </div>
+    </div>
+
+    <div class="my-10">
       <h2 class="sub-title">* Terminal *</h2>
       <p v-if="mainStore.language === 'en'">
         My idea was to create a terminal like interface to display my skills.
@@ -87,15 +99,7 @@ const mainStore = useMainStore()
       </div>
     </div>
 
-    <div class="centered">
-      <div class="bg-transparent border-2 border-slate-50 hover:border-amber-500 rounded-lg py-8 px-16 flex justify-center items-center gap-x-28 duration-200">
-        <div>
-          <p class="font-bold text-2xl">CV Junior Web Developer</p>
-          <p class="mt-2">Need to know more about my background, download my CV.</p>
-        </div>
-        <a href="./cv.pdf" class="btn-lg btn-amber hover:-translate-y-1"
-        target="_blank" rel="noopener noreferrer">Download it!</a>
-      </div>
-    </div>
+    <SkillsAndAbilities :skills="mainStore.skills" :language="mainStore.language" />
+
   </div>
 </template>

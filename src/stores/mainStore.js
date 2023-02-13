@@ -79,47 +79,54 @@ export const useMainStore = defineStore('main_store', () => {
 
   /* This object represents my skills */
   const skills = {
-    hardSkills: [
-      {
-        name: 'Back-End',
-        technologies: [
-          {name: 'PHP', svg: ''},
-          {name: 'Symfony', svg: ''},
-          {name: 'Node.js', svg: ''},
-          {name: 'Supabase', svg: ''},
-          {name: 'PostgreSQL', svg: ''},
-          {name: 'MySQL', svg: ''},
-          {name: 'MongoDB', svg: ''}
-        ]
-      },
-      {
-        name: 'Front-End',
-        technologies: [
-          {name: 'HTML', svg: ''},
-          {name: 'CSS', svg: ''},
-          {name: 'JavaScript', svg: ''},
-          {name: 'Vue.js', svg: ''},
-          {name: 'Tailwind CSS', svg: ''},
-          {name: 'Bootstrap', svg: ''}
-        ]
-      }
-    ],
+    hardSkills: {
+      technologies: [
+        { name: 'TypeScript', fileName: 'typescript.svg' },
+        { name: 'JavaScript', fileName: 'javascript.svg' },
+        { name: 'PHP', fileName: 'php.svg' },
+        { name: 'Python', fileName: 'python.svg' },
+        { name: 'C language', fileName: 'c-language.svg' },
+        { name: 'Java', fileName: 'java.svg'}
+      ],
+      webFrameworks: [
+        { name: 'React.js', fileName: 'react-js.svg' },
+        { name: 'Vue.js', fileName: 'vue-js.svg' },
+        { name: 'Symfony', fileName: 'symfony.svg' }
+      ],
+      cssFrameworks: [
+        { name: 'Tailwind CSS', fileName: 'tailwind-css.svg' },
+        { name: 'Bootstrap', fileName: 'bootstrap.svg' }
+      ],
+      DBMS: [
+        { name: 'PostgreSQL', fileName: 'postgresql.svg' },
+        { name: 'MySQL', fileName: 'mysql.svg' },
+        { name: 'MongoDB', fileName: 'mongodb.svg' }
+      ]
+    },
     softSkills: [
-      {
-        name: 'Communication',
-        svg: ''
+      { name: 'Adaptability', fileName: 'adaptability.svg',
+        description: {
+          en: "I possess the ability to adapt to various working environments and can adapt quickly to new situations.",
+          fr: "Je possède la capacité de m'adapter à divers environnements de travail et je peux m'adapter rapidement à de nouvelles situations."
+        }
       },
-      {
-        name: 'Teamwork',
-        svg: ''
+      { name: 'Productivity', fileName: 'fast-working.svg',
+        description: {
+          en: "I'm an organized person who strives to maintain a clear and structured approach to my work.",
+          fr: "Je suis une personne organisée qui s'efforce de maintenir une approche claire et structurée de mon travail."
+        }
       },
-      {
-        name: 'Problem Solving',
-        svg: ''
+      { name: 'Problem Solving', fileName: 'problem-solving.svg',
+        description: {
+          en: "I have a natural ability to think outside of the box and come up with creative solutions to complex challenges.",
+          fr: "J'ai une capacité naturelle à sortir des sentiers battus et à trouver des solutions créatives à des problèmes complexes."
+        }
       },
-      {
-        name: 'Adaptability',
-        svg: ''
+      { name: 'Creativity', fileName: 'creativity.svg',
+        description: {
+          en: "I bring a fresh and imaginative approach to all of my projects, and I am always open to new ideas and approaches.",
+          fr: "J'apporte une approche fraîche et imaginative à tous mes projets, et je suis toujours ouverte aux nouvelles idées et approches."
+        }
       }
     ]
   }

@@ -23,9 +23,9 @@ defineProps({
     <p v-else>{{ project.description.fr }}</p>
 
     <div v-show="discover">
-      <h3 class="text-lg mb-4 mt-4">Technologies</h3>
-      <div>
-        <span class="tag" v-for="t in project.technologies" :key="t.id">
+      <h3 class="text-lg my-4">Technologies</h3>
+      <div class="flex flex-wrap gap-2">
+        <span class="tag bg-rose-600" v-for="t in project.technologies" :key="t.id">
           {{ t }}
         </span>
       </div>

@@ -27,9 +27,7 @@
 
     /* card */
     .card {
-        @apply bg-slate-900 rounded-lg p-6 border-2 border-slate-50 max-w-4xl;
-        /* hover */
-        @apply hover:border-amber-500 duration-200;
+        @apply bg-slate-900 rounded-lg p-6 max-w-4xl;
     }
     
     .card-title {
@@ -37,7 +35,7 @@
     }
 
     .tag {
-        @apply bg-slate-500 rounded-3xl px-2 py-1 mr-4 inline-block;
+        @apply rounded-3xl px-4 py-1 text-sm;
     }
 
     /* titles */
@@ -69,9 +67,9 @@
     /* nav-menu */
 
     .nav-menu {
-        @apply bg-slate-900 rounded-3xl px-16 py-2 max-w-max items-center flex flex-row gap-x-8 mt-4;
+        @apply bg-slate-900 rounded-3xl px-16 py-2 max-w-max flex justify-center items-center gap-x-8 mt-4 border-2 border-slate-900;
         /* hover */
-        @apply hover:bg-slate-700 hover:px-72 duration-700;
+        @apply hover:border-amber-500 hover:bg-transparent hover:px-72 duration-700;
     }
 
     .nav-menu a {
@@ -103,11 +101,5 @@
     #ascii-art {
         @apply text-base;
         font-family: 'Courier New', Courier, monospace;
-    }
-
-    /* footer */
-
-    .network {
-        @apply flex justify-center items-center gap-x-16;
     }
 }
