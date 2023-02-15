@@ -53,7 +53,8 @@ const autofocus = () => {
 }
 
 const runCommand = () => {
-  let c = (command.value.trim().length > 0) ? command.value : null
+  let trimCommand = command.value.trim()
+  let c = (trimCommand.length > 0) ? trimCommand : null
   if (c) {
     if (c === 'help') {
       lines.value.push({ id: lines.value.length, c: c, text: helpDescription })
