@@ -54,9 +54,15 @@ const commandsKey = (event) => {
     /* You can only change direction when the game is started and not paused */
     if (!pause.value) {
       if (k === 'q' || k === 'ArrowLeft') direction.value = 'left'
-      else if (k === 'z' || k === 'ArrowUp') direction.value = 'up'
+      else if (k === 'z' || k === 'ArrowUp') {
+        event.preventDefault()
+        direction.value = 'up'
+      }
       else if (k === 'd' || k === 'ArrowRight') direction.value = 'right'
-      else if (k === 's' || k === 'ArrowDown') direction.value = 'down'
+      else if (k === 's' || k === 'ArrowDown') {
+        event.preventDefault()
+        direction.value = 'down'
+      }
     }
     if (k === 'p' && !tutorialMode.value) pause.value = !pause.value
   }
