@@ -1,11 +1,19 @@
 import connectToDB from './src/services/db.js';
 import User from './src/models/user.js';
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const PORT = 3333;
 
 app.use(express.json());
+
+const corsOptions = {
+  origin: 'http://127.0.0.1:5173',
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 connectToDB();
 

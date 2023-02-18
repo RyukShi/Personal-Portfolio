@@ -1,6 +1,8 @@
-import { connect } from 'mongoose';
+import { connect, set } from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
+
+set('strictQuery', false);
 
 /* eslint-env node */
 const connectToDB = () => {
