@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue'
 import { hexaColors } from '../constant'
+import RankingScoreTable from './RankingScoreTable.vue'
 
 const emit = defineEmits(['changeMode'])
 
@@ -201,11 +202,12 @@ const drawFood = () => {
       </button>
     </div>
   </div>
-  <div v-show="gameOver">
+  <div v-if="gameOver">
     <p class="text-2xl text-center">Game Over! Your score : {{ score }} point(s)</p>
     <div class="centered mt-4">
       <button class="btn-lg btn-amber" @click="restart">Play again!</button>
     </div>
+    <RankingScoreTable game="snake" />
   </div>
 </template>
 
