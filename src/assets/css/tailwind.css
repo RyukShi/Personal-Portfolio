@@ -40,16 +40,16 @@
 
     /* titles */
     .main-title {
-        @apply text-4xl mt-4 mb-4 border-l-2 pl-4 border-amber-500;
+        @apply text-4xl my-4 border-l-2 pl-4 border-amber-500;
     }
 
     .sub-title {
-        @apply text-2xl mt-4 mb-4;
+        @apply text-2xl my-4;
     }
 
     /* buttons */
     .btn {
-        @apply rounded-lg px-4 p-2;
+        @apply rounded-lg px-4 py-2;
     }
 
     .btn-lg {
@@ -67,13 +67,17 @@
     /* nav-menu */
 
     .nav-menu {
-        @apply bg-slate-900 rounded-3xl px-16 py-2 max-w-max flex justify-center items-center gap-x-8 mt-4 border-2 border-slate-900;
+        @apply bg-slate-900 rounded-3xl px-16 py-2 max-w-max flex gap-x-6 mt-4 border-2 border-slate-900
         /* hover */
-        @apply hover:border-amber-500 hover:bg-transparent hover:px-72 duration-700;
+        hover:border-amber-500 hover:bg-transparent hover:px-56 duration-700;
     }
 
     .nav-menu a {
-        @apply text-lg hover:text-amber-500;
+        @apply text-lg hover:text-amber-500 px-2;
+    }
+
+    .nav-menu a.router-link-exact-active {
+        @apply border-b border-amber-500;
     }
 
     /* terminal */
@@ -91,7 +95,7 @@
     }
 
     .terminal-body {
-        @apply mt-12 ml-4 mr-4 mb-4;
+        @apply my-8 mx-4;
     }
 
     .terminal-input {
