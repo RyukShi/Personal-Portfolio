@@ -1,51 +1,21 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue'
-
-const props = defineProps({
-  game: {
-    type: String,
+defineProps({
+  topPlayers: {
+    type: Array,
     required: true
   },
-  limit: {
-    type: Number,
-    default: 10
+  loading: {
+    type: Boolean,
+    required: true
   }
 })
-
-const topPlayers = ref(null)
-const loading = ref(false)
-
-const fetchTopPlayers = () => {
-  loading.value = true
-  fetch("http://localhost:3333/top-users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8"
-    },
-    body: JSON.stringify(
-      {
-        game: props.game,
-        limit: props.limit
-      }
-    )
-  })
-  .then(async (response) => {
-    let jsonData = await response.json()
-    topPlayers.value = jsonData
-  })
-  .catch(err => console.error(err))
-  .finally(() => loading.value = false)
-}
-
-onBeforeMount(() => fetchTopPlayers())
 </script>
 
 <template>
   <h2 class="sub-title text-center">* Ranking Score Table *</h2>
 
   <p v-if="loading" class="text-center text-lg">Loading ...</p>
-
-  <div class="centered">
+  <div v-else class="centered">
     <table v-if="topPlayers" class="border-collapse border-2 border-amber-500 w-1/2 text-center">
       <thead>
         <tr>

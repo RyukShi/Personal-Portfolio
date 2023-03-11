@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue'
 import { hexaColors } from '../constant'
 import RankingScoreTable from './RankingScoreTable.vue'
+import { fetchTopPlayers, sendUserVerificationRequest } from '../utils'
 
 const emit = defineEmits(['changeMode'])
 
@@ -17,9 +18,12 @@ const pause = ref(true)
 const gameOver = ref(false)
 const started = ref(false)
 const rainbowMode = ref(false)
+const loading = ref(false)
 /* Number refs */
 const score = ref(0)
 const speed = ref(200)
+/* Array ref */
+const topPlayers = ref([])
 /* Computed ref */
 const checkFood = computed(() => {
   return snake.value.x === food.value.x
@@ -102,6 +106,21 @@ watch(pause, (isPaused) => {
     */
     isPaused ? clearInterval(moveIntervalId) :
       moveIntervalId = setInterval(moveSnake, speed.value);
+  }
+})
+
+watch(gameOver, async (isGameOver) => {
+  if (isGameOver) {
+    try {
+      loading.value = true
+      await sendUserVerificationRequest({ nickname: nickname.value, score: score.value, game: 'snake' })
+      const topPlayersResponse = await fetchTopPlayers({ game: 'snake', limit: 10 })
+      if (topPlayersResponse) topPlayers.value = topPlayersResponse
+    } catch (error) {
+      console.error(error)
+    } finally {
+      loading.value = false
+    }
   }
 })
 
@@ -207,7 +226,7 @@ const drawFood = () => {
     <div class="centered mt-4">
       <button class="btn-lg btn-amber" @click="restart">Play again!</button>
     </div>
-    <RankingScoreTable game="snake" />
+    <RankingScoreTable :loading="loading" :topPlayers="topPlayers" />
   </div>
 </template>
 
