@@ -5,10 +5,6 @@ export const useMainStore = defineStore('main_store', () => {
   // set default language to english
   const language = ref('en')
 
-  const setLanguage = (l) => {
-    language.value = l
-  }
-
   /* This array represents the all projects that I have developed */
   const projects = [
     {
@@ -29,7 +25,7 @@ export const useMainStore = defineStore('main_store', () => {
         en: "This Vue App is a crypto virtual wallet, it allows to buy cryptocurrencies, listing crypto assets, the data comes from CoinAPI.io.",
         fr: "Cette application à été conçue avec le Framework Vue.js, Elle implémente les fonctionnalités de base d'un portefeuille crypto virtuel, elle permet d'acheter des crypto-monnaies, de lister des actifs crypto, les données proviennent de CoinAPI.io."
       },
-      technologies: ['Vue 3 & Vite', 'Pinia', 'Tailwind CSS', 'Supabase'],
+      technologies: ['Vue 3 & Vite', 'Pinia', 'Tailwind CSS', 'Supabase', 'Chart.js'],
       githubUrl: 'https://github.com/RyukShi/Virtual-Crypto-Wallet',
       website: ''
     },
@@ -40,7 +36,7 @@ export const useMainStore = defineStore('main_store', () => {
         en: "Symfony Application to visualize data from The Metropolitan Museum of Art, located in New York, this museum is one of the largest museums in the USA.",
         fr: "Application Symfony pour visualiser les données du Metropolitan Museum of Art, situé à New York, ce musée est l'un des plus grands musées des États-Unis."
       },
-      technologies: ['Symfony 5', 'PHP 7.4', 'PostgreSQL', 'Bootstrap'],
+      technologies: ['Symfony 5', 'Twig', 'PHP 7.4', 'PostgreSQL', 'Bootstrap'],
       githubUrl: 'https://github.com/RyukShi/Museum-Of-Art',
       website: ''
     },
@@ -61,19 +57,9 @@ export const useMainStore = defineStore('main_store', () => {
         en: "What are we eating tonight? That's a great question! Thanks to this application, you'll never run out of inspiration for dinner, all you have to do is fill in what you have left in your fridge and you'll be presented with several recipe suggestions, click on any of them to get detailed instructions.",
         fr: "Qu'est- ce qu'on mange ce soir? C'est une excellente question! Grâce à cette application, vous ne serez jamais à court d'inspiration pour le dîner, il vous suffit de renseigner ce qu'il vous reste dans votre réfrigérateur et plusieurs suggestions de recettes vous seront présentées, cliquez sur l'une d'entre elles pour obtenir des instructions détaillées."
       },
-      technologies: ['React.js', 'TypeScript', 'Vite', 'OpenAI API', 'Vite'],
+      technologies: ['React.js', 'TypeScript', 'Vite', 'OpenAI API'],
       githubUrl: 'https://github.com/RyukShi/What-Are-We-Eating-Tonight',
       website: ''
-    },
-    {
-      id: 6,
-      name: 'Writing Number In Letters',
-      description: {
-        en: "This little Web App allows to write a number in letters in many different languages.",
-        fr: "Cette petite application Web permet d'écrire un nombre en lettres dans de nombreuses langues différentes."
-      },
-      technologies: ['Vue 3 & Vite', 'Pinia', 'CSS'],
-      githubUrl: 'https://github.com/RyukShi/Writing-Number-In-Letters'
     }
   ]
 
@@ -131,5 +117,5 @@ export const useMainStore = defineStore('main_store', () => {
     ]
   }
 
-  return { projects, skills, language, setLanguage }
+  return { projects, skills, language }
 })

@@ -4,7 +4,7 @@ import { useMainStore } from '../stores/mainStore.js'
 const mainStore = useMainStore()
 
 const onChange = (e) => {
-  mainStore.setLanguage(e.target.value)
+  mainStore.language = e.target.value
 }
 
 const LANGUAGES = [
