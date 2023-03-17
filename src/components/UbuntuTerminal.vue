@@ -33,12 +33,19 @@ const helpDescription = `Here is a list of the commands currently available:
 - **games**: displays all available games.`
 
 const skillsDescription = `My programming skills:
-- Web Frameworks: React, Vue.js, Symfony.
-- Basic web development: HTML, CSS, and JavaScript.
+- Web Frameworks: React.js, Vue.js, Symfony, Express.js.
+- Basic web development: HTML, CSS, JavaScript and TypeScript.
 - Knowledge of relational databases (MySQL, PostgreSQL, MariaDB) and NoSQL (MongoDB).
 - Understanding of Agile development principles and project management (Jira & SCRUM).`
 
-const aboutMeDescription = `Fell free to contact me ! My E-mail 📫 : aurelien.rb@outlook.fr`
+const aboutMeDescription = `Hi there ! 👋
+My name is Aurélien ! I'm a developer passionate about creating innovative digital solutions!
+I graduated from the University of La Rochelle in computer science, where I acquired a solid foundation in programming and software development.
+In my free time, I like to watch anime and discover Japanese culture.
+I'm also a big fan of music and I'm currently trying to learn to play the guitar.
+I like to stay active and I practice cycling and bodybuilding.
+My area of expertise is full-stack web development and I'm always looking for new challenges and opportunities to learn and grow.
+If you are interested in working with me or if you have any questions, feel free to contact me ! My E-mail 📫 : aurelien.rb@outlook.fr.`
 
 const allGames = `Here are the different games I have developed:
 - **snake**
