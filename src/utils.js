@@ -1,6 +1,8 @@
+const BASE_URL_SERVER = import.meta.env.VITE_BASE_URL_SERVER
+
 export const fetchTopPlayers = async (params) => {
   try {
-    const response = await fetch("http://localhost:3333/top-users", {
+    const response = await fetch(`${BASE_URL_SERVER}/top-users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -25,7 +27,7 @@ export const fetchTopPlayers = async (params) => {
 
 export const sendUserVerificationRequest = async (params) => {
   try {
-    const response = await fetch("http://localhost:3333/check-users", {
+    const response = await fetch(`${BASE_URL_SERVER}/check-users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"

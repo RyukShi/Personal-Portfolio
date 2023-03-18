@@ -8,8 +8,9 @@ const PORT = 3333;
 
 app.use(express.json());
 
+/* eslint-env node */
 const corsOptions = {
-  origin: 'http://127.0.0.1:5173',
+  origin: process.env.APP_URL,
   optionsSuccessStatus: 200
 };
 
