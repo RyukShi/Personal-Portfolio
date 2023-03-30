@@ -12,7 +12,7 @@ export const useMainStore = defineStore('main_store', () => {
       name: 'Home Made Cook',
       description: {
         en: "This Web App is a recipe sharing platform. It allows users to share their recipes with other users. Users can also search for recipes by ingredients, categories, and other users. Users can also add recipes to their favorites.",
-        fr: "Cette application Web est une plateforme de partage de recettes. Elle permet aux utilisateurs de partager leurs recettes avec d'autres utilisateurs. Les utilisateurs peuvent également rechercher des recettes par ingrédients, catégories et autres utilisateurs.Les utilisateurs peuvent également ajouter des recettes à leurs favoris."
+        fr: "Cette application Web est une plateforme de partage de recettes. Elle permet aux utilisateurs de partager leurs recettes avec d'autres utilisateurs. Les utilisateurs peuvent également rechercher des recettes par ingrédients, catégories et autres utilisateurs. Les utilisateurs peuvent également ajouter des recettes à leurs favoris."
       },
       technologies: ['Symfony 6', 'Twig', 'PHP 8.1', 'JavaScript', 'Tailwind CSS', 'PostgreSQL', 'Webpack'],
       githubUrl: 'https://github.com/RyukShi/Home-Made-Cook',
@@ -25,7 +25,7 @@ export const useMainStore = defineStore('main_store', () => {
         en: "This Vue App is a crypto virtual wallet, it allows to buy cryptocurrencies, listing crypto assets, the data comes from CoinAPI.io.",
         fr: "Cette application à été conçue avec le Framework Vue.js, Elle implémente les fonctionnalités de base d'un portefeuille crypto virtuel, elle permet d'acheter des crypto-monnaies, de lister des actifs crypto, les données proviennent de CoinAPI.io."
       },
-      technologies: ['Vue 3 & Vite', 'Pinia', 'Tailwind CSS', 'Supabase', 'Chart.js'],
+      technologies: ['Vue.js', 'Vite', 'Pinia', 'Tailwind CSS', 'Supabase', 'Chart.js'],
       githubUrl: 'https://github.com/RyukShi/Virtual-Crypto-Wallet',
       website: ''
     },
@@ -57,9 +57,20 @@ export const useMainStore = defineStore('main_store', () => {
         en: "What are we eating tonight? That's a great question! Thanks to this application, you'll never run out of inspiration for dinner, all you have to do is fill in what you have left in your fridge and you'll be presented with several recipe suggestions, click on any of them to get detailed instructions.",
         fr: "Qu'est- ce qu'on mange ce soir? C'est une excellente question! Grâce à cette application, vous ne serez jamais à court d'inspiration pour le dîner, il vous suffit de renseigner ce qu'il vous reste dans votre réfrigérateur et plusieurs suggestions de recettes vous seront présentées, cliquez sur l'une d'entre elles pour obtenir des instructions détaillées."
       },
-      technologies: ['React.js', 'TypeScript', 'Vite', 'OpenAI API'],
+      technologies: ['React.js', 'TypeScript', 'Vite', 'OpenAI API', 'CSS'],
       githubUrl: 'https://github.com/RyukShi/What-Are-We-Eating-Tonight',
       website: ''
+    },
+    {
+      id: 6,
+      name: 'Ghibli Studio React',
+      description: {
+        en: "This React application allows you to see the various animated films produced by Ghibli Studio. Just click on any poster to get the details of the film.",
+        fr: "Cette application React vous permet de voir les divers films d'animation produits par le studio Ghibli. Il vous suffit de cliquer sur l'une des affiches pour obtenir les détails du film."
+      },
+      technologies: ['React.js', 'Vite', 'JavaScript', 'CSS'],
+      githubUrl: 'https://github.com/RyukShi/Ghibli-Studio-React',
+      website: 'https://ryukshi.github.io/Ghibli-Studio-React/'
     }
   ]
 
