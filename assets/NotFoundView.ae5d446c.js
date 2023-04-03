@@ -1,0 +1,1 @@
+import{_ as o,o as t,c as n,a as e}from"./index.e3b1add6.js";const s={},c=e("h1",{class:"main-title"},"404 Not Found",-1),a=e("p",null,"The page you're looking for doesn't exist. Click on home page to return to the safe and cozy home.",-1),r=[c,a];function _(i,d){return t(),n("div",null,r)}const h=o(s,[["render",_]]);export{h as default};
