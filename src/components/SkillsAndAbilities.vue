@@ -1,18 +1,15 @@
 <script setup>
-defineProps({
-  skills: {
-    type: Object,
-    required: true
-  },
-  language: {
-    type: String,
-    required: true
-  }
-})
+import { useMainStore } from '../stores/mainStore'
+
+const mainStore = useMainStore()
+const skills = mainStore.skills
+const language = mainStore.language
 </script>
 
 <template>
-  <div class="my-10 container">
+  <div class="container">
+    <h1 class="main-title">My skills</h1>
+
     <h2 class="sub-title">* Hard Skills *</h2>
 
     <h3 class="text-xl mb-4">Technologies</h3>

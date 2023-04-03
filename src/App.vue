@@ -10,10 +10,11 @@ const currentYear = computed(() => new Date().getFullYear())
     <nav class="nav-menu">
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/projects">Projects</RouterLink>
+      <RouterLink to="/my-skills">Skills</RouterLink>
     </nav>
   </div>
 
-  <RouterView class="mr-16 ml-16" v-slot="{ Component }">
+  <RouterView class="mx-16" v-slot="{ Component }">
     <Transition name="fade">
       <Component :is="Component" />
     </Transition>

@@ -11,8 +11,8 @@ export const useMainStore = defineStore('main_store', () => {
       id: 1,
       name: 'Home Made Cook',
       description: {
-        en: "This Web App is a recipe sharing platform. It allows users to share their recipes with other users. Users can also search for recipes by ingredients, categories, and other users. Users can also add recipes to their favorites.",
-        fr: "Cette application Web est une plateforme de partage de recettes. Elle permet aux utilisateurs de partager leurs recettes avec d'autres utilisateurs. Les utilisateurs peuvent également rechercher des recettes par ingrédients, catégories et autres utilisateurs. Les utilisateurs peuvent également ajouter des recettes à leurs favoris."
+        en: "This Web App is a recipe sharing platform. It allows users to share their recipes with other users. Users can also search for recipes according to several criteria (name, category, thematic, ingredients...). Users can also add recipes to their favorites.",
+        fr: "Cette application Web est une plateforme de partage de recettes. Elle permet aux utilisateurs de partager leurs recettes favorites avec d'autres utilisateurs. Les utilisateurs peuvent rechercher des recettes suivant plusieurs critères (nom, catégorie, thématique, ingredients...). Les utilisateurs peuvent également ajouter des recettes à leurs favoris."
       },
       technologies: ['Symfony 6', 'Twig', 'PHP 8.1', 'JavaScript', 'Tailwind CSS', 'PostgreSQL', 'Webpack'],
       githubUrl: 'https://github.com/RyukShi/Home-Made-Cook',

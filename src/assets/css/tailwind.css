@@ -40,11 +40,11 @@
 
     /* titles */
     .main-title {
-        @apply text-4xl my-4 border-l-2 pl-4 border-amber-500;
+        @apply text-4xl my-12 border-l-2 pl-4 border-amber-500;
     }
 
     .sub-title {
-        @apply text-2xl my-4;
+        @apply text-2xl my-8;
     }
 
     /* buttons */
@@ -83,7 +83,7 @@
     /* terminal */
 
     .terminal {
-        @apply bg-slate-900 rounded-lg mt-4 relative text-sm overflow-y-scroll container h-screen;
+        @apply bg-slate-900 rounded-lg relative text-sm overflow-y-scroll container h-screen;
     }
 
     .terminal-header {
