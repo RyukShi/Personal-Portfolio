@@ -36,7 +36,7 @@ export const useMainStore = defineStore('main_store', () => {
         en: "Symfony Application to visualize data from The Metropolitan Museum of Art, located in New York, this museum is one of the largest museums in the USA.",
         fr: "Application Symfony pour visualiser les données du Metropolitan Museum of Art, situé à New York, ce musée est l'un des plus grands musées des États-Unis."
       },
-      technologies: ['Symfony 5', 'Twig', 'PHP 7.4', 'PostgreSQL', 'Bootstrap'],
+      technologies: ['Symfony 6', 'Twig', 'PHP 8.1', 'PostgreSQL', 'Bootstrap'],
       githubUrl: 'https://github.com/RyukShi/Museum-Of-Art',
       website: ''
     },
@@ -71,6 +71,16 @@ export const useMainStore = defineStore('main_store', () => {
       technologies: ['React.js', 'Vite', 'JavaScript', 'CSS'],
       githubUrl: 'https://github.com/RyukShi/Ghibli-Studio-React',
       website: 'https://ryukshi.github.io/Ghibli-Studio-React/'
+    },
+    {
+      id: 7,
+      name: 'Sorting Algorithms in C',
+      description: {
+        en: "This project graphically compares the performance of various sorting algorithms in C language.",
+        fr: "Ce projet compare graphiquement les performances de divers algorithmes de tri en langage C."
+      },
+      technologies: ['C language', 'CMake', 'Valgrind'],
+      githubUrl: 'https://github.com/RyukShi/Sorting-Algorithms-in-C'
     }
   ]
 
